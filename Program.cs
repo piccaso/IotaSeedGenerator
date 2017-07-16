@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace IotaSeedGenerator
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var validCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ9".ToList();
             var len = 81;
@@ -25,7 +23,7 @@ namespace IotaSeedGenerator
                         var nextIndex = (int) (nextUint % validCharacters.Count);
                         var nextCharacter = validCharacters[nextIndex];
 
-                        if(validCharacters.Contains(nextCharacter)) sb.Append(nextCharacter);
+                        if (validCharacters.Contains(nextCharacter)) sb.Append(nextCharacter);
                     }
                     Console.WriteLine(sb);
                 }
