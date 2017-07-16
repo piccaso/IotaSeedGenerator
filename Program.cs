@@ -10,11 +10,11 @@ namespace IotaSeedGenerator
         private static void Main(string[] args)
         {
             var validCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ9".ToList();
-            var len = 81;
+            const int len = 81;
             var cnt = 10;
             using (var rng = new RNGCryptoServiceProvider())
             {
-                while (--cnt > 0)
+                while (cnt > 0)
                 {
                     var sb = new StringBuilder(len);
                     while (sb.Length < len)
@@ -25,7 +25,14 @@ namespace IotaSeedGenerator
 
                         if (validCharacters.Contains(nextCharacter)) sb.Append(nextCharacter);
                     }
-                    Console.WriteLine(sb);
+
+                    var seed = sb.ToString();
+                    var diversity = validCharacters.Count(character => seed.Contains(character));
+
+                    if (diversity < validCharacters.Count || seed.Length != len) continue;
+
+                    Console.WriteLine(seed);
+                    cnt--;
                 }
             }
         }
